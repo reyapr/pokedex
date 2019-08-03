@@ -1,15 +1,11 @@
 import { Reducer } from 'redux'
 
 export interface PokemonState {
-  pokeName: string,
-  pokeImage: string,
-  pokeId: number | null
+  list: Array<any>
 }
 
 const pokemonState = {
-  pokeId: null,
-  pokeName: '',
-  pokeImage: ''
+  list:[]
 }
 
 const pokemon: Reducer = (state: PokemonState = pokemonState, { type, payload }) => {
