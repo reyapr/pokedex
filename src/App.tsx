@@ -1,15 +1,19 @@
 import 'bootstrap/dist/css/bootstrap.css';
 import React from 'react';
-import logo from './logo.svg';
+import Pokedex from './components/pages/Pokedex';
 import './App.css';
 import NavBar from './components/layout/NavBar';
-import { BrowserRouter, Route } from 'react-router-dom'
+import { BrowserRouter, Route } from 'react-router-dom';
 
 function App() {
   return (
     <div className="App">
-      <NavBar/>
-      Initialize
+      <BrowserRouter>
+        <NavBar/>
+        <div className="container">
+          <Route component={Pokedex} route="/" />
+        </div>
+      </BrowserRouter>
     </div>
   );
 }
