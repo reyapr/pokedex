@@ -1,4 +1,4 @@
-declare module "configMiddlewareType" {
+declare module "middleware-type" {
   import { Method, AxiosResponse } from "axios"
 
   export interface Init {
