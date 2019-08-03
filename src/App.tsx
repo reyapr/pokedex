@@ -5,6 +5,7 @@ import NavBar from './components/layout/NavBar';
 import { BrowserRouter, Route } from 'react-router-dom';
 import store from './config/store'
 import { Provider } from 'react-redux'
+import PokemonDetail from './components/pages/PokemonDetail'
 
 function App() {
   return (
@@ -12,7 +13,8 @@ function App() {
       <BrowserRouter>
         <NavBar/>
         <div className="container">
-          <Route component={Pokedex} route="/" />
+          <Route component={Pokedex} exact path="/" />
+          <Route component={PokemonDetail} exact path="/pokemon/:pokemonId" />
         </div>
       </BrowserRouter>
     </Provider>
