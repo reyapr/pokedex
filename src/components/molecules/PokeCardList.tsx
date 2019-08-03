@@ -10,13 +10,24 @@ export interface Props {
 } 
 
 const PokeCardList: React.FC<Props> = ({ pokemonList, getPokemon }) => {
+
+  useEffect(()=>{
+    console.log('test')
+    getPokemon()
+  },[getPokemon])
   return (
     <div className="container-fluid">
       <div className="row p-1">
-        <PokeCard/>
-        <PokeCard/>
-        <PokeCard/>
-        <PokeCard/>
+        {
+            pokemonList.map(pokemon => {
+            return(
+              <PokeCard
+                name={pokemon.name}
+                pokemonId={Number(pokemon.url.substr(-2,1))}
+              />
+            )
+          })
+        }
       </div>
     </div>
   )
