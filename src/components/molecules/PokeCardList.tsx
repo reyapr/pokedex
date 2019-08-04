@@ -50,7 +50,7 @@ const PokeCardList: React.FC<Props> = ({ pokemonList, getPokemon, filterPokemonL
           startIndex: state.startIndex + 20,
           hasMore
         })
-      },400)
+      },800)
     }
   }
 
