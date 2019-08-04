@@ -7,7 +7,8 @@ export interface PokemonState {
 
 const pokemonState = {
   list:[],
-  detail: {}
+  detail: {},
+  nextFetch: '',
 }
 
 const pokemon: Reducer = (state: PokemonState = pokemonState, { type, payload }) => {
