@@ -4,7 +4,9 @@ import { PokemonDetailParam } from 'action-type'
 export const actionType = {
   GET_POKEMON: 'GET_POKEMON',
   GET_POKEMON_DETAIL: 'GET_POKEMON_DETAIL',
-  CLEAR_POKEMON_DETAIL: 'CLEAR_POKEMON_DETAIL'
+  CLEAR_POKEMON_DETAIL: 'CLEAR_POKEMON_DETAIL',
+  FILTER_ASC: 'FILTER_ASC',
+  FILTER_DESC: 'FILTER_DESC'
 }
 
 export const getPokemon = () => ({ dispatch, fetch }: Middleware)=> {
@@ -36,3 +38,22 @@ export const getPokemonDetail = ({ pokemonId }: PokemonDetailParam) => ({ dispat
 export const clearPokemonDetail = () => ({
   type: actionType.CLEAR_POKEMON_DETAIL
 })
+
+export const filterPokemonList = (filter: string) => ({ dispatch }: Middleware) => {
+  switch(filter){
+    case 'A-Z':
+      return dispatch({
+        type: actionType.FILTER_ASC
+      })
+    case 'Z-A':
+      return dispatch({
+        type: actionType.FILTER_DESC
+      })
+    case 'Highest Number':
+      break;
+    case 'Lowest Number':
+      break;
+    default:
+      return ''
+  }
+}
