@@ -42,10 +42,24 @@ const PokeCardList: React.FC<Props> = ({ pokemonList, getPokemon }) => {
         setState({
           ...state,
           showedItems: showedItems.concat(slicedPokemonData),
-          startIndex: state.startIndex + 2,
+          startIndex: state.startIndex + 20,
           hasMore
         })
       },400)
+    }
+  }
+
+  const handleFilter = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    filterPokemonList(e.target.value)
+    setFilter(e.target.value)
+    if(e.target.value){
+      setState({
+        ...state,
+        itemsPage: 20,
+        startIndex: 0,
+        hasMore: false,
+        showedItems: []
+      })
     }
   }
 
@@ -53,16 +67,21 @@ const PokeCardList: React.FC<Props> = ({ pokemonList, getPokemon }) => {
     getPokemon()
   },[getPokemon])
 
+
   useEffect(() => {
     let { slicedPokemonData, hasMore } = newPokemonData(pokemonList)
     let showedItems: any = state.showedItems
-    setState({
-      ...state,
-      showedItems: showedItems.concat(slicedPokemonData),
-      startIndex: state.startIndex + 2,
-      hasMore,
-    })
+    if(pokemonList.length> 0){
+      setState({
+        ...state,
+        showedItems: showedItems.concat(slicedPokemonData),
+        startIndex: state.startIndex + 20,
+        hasMore,
+      })
+    }
   },[pokemonList])
+
+
 
   return (
     <div className="container-fluid">
