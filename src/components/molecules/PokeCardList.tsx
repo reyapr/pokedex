@@ -45,7 +45,7 @@ const PokeCardList: React.FC<Props> = ({ pokemonList, getPokemon }) => {
           startIndex: state.startIndex + 2,
           hasMore
         })
-      },400) // dikasih timeout biar keliatan kalo di test 
+      },400)
     }
   }
 
