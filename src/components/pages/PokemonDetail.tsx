@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { RouteComponentProps } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { getPokemonDetail, clearPokemonDetail } from '../../actions/pokemon'
@@ -17,7 +17,8 @@ export interface Props extends RouteComponentProps<MatchParams>{
 } 
 
 const PokemonDetail: React.FC<Props> = ({ match, getPokemonDetail, pokemon, clearPokemonDetail }) => {
-
+  const pokoemonDetail = pokemon.stats || []  
+  const [ pokeStatus, setPokeStatus ] = useState([])
   const { pokemonId } = match.params
   let pokemonDigitId = digitHelper(pokemonId)
   const imageUrl = `https://assets.pokemon.com/assets/cms2/img/pokedex/detail/${pokemonDigitId}.png`
@@ -30,6 +31,13 @@ const PokemonDetail: React.FC<Props> = ({ match, getPokemonDetail, pokemon, clea
     }
   },[getPokemonDetail])
 
+  useEffect(() => {
+    let allStatus: any = pokemon.stats && pokemon.stats.map((status: any) => status.base_stat) || []
+    setTimeout(()=>{
+      setPokeStatus(allStatus)
+    },700)
+  },[pokemon])
+
   return (
     <div className="card mt-3 mx-auto" style={{ maxWidth: '1100px'}}>
       <div className="row no-gutters align-items-center">
@@ -40,23 +48,23 @@ const PokemonDetail: React.FC<Props> = ({ match, getPokemonDetail, pokemon, clea
           <div className="card-body ">
             <h5>{pokemon.name}</h5>
             {
-              pokemon.stats && pokemon.stats.map((status: any) => {
+              pokoemonDetail.map((status: any, index: any) => {
                 return(
-                  <div className="row align-items-center">
+                  <div className="row align-items-center" key={index}>
                     <div className="col-md-3">
-                      {status.stat.name}  
+                      {status.stat.name || ''}  
                     </div>: 
                     <div className="col-md-8 m-1">
                       <div className="progress">
                         <div 
                           className="progress-bar" 
                           role="progressbar" 
-                          style={{width: `${status.base_stat}%` }} 
-                          aria-valuenow={status.base_stat} 
+                          style={{width: `${pokeStatus[index] || 0}%` }} 
+                          aria-valuenow={pokeStatus[index] || 0} 
                           aria-valuemin={0} 
                           aria-valuemax={100}
                           >
-                            {`${status.base_stat}%`}
+                            {`${pokeStatus[index] || 0 }%`}
                         </div>
                       </div>
                     </div>
