@@ -17,6 +17,8 @@ export interface Props extends RouteComponentProps<MatchParams>{
 } 
 
 const PokemonDetail: React.FC<Props> = ({ match, getPokemonDetail, pokemon, clearPokemonDetail }) => {
+  console.log(pokemon.abilities,`<========================= pokemon.abilities =======================`);
+  const pokemonAbility = pokemon.abilities || []  
   const pokoemonDetail = pokemon.stats || []  
   const [ pokeStatus, setPokeStatus ] = useState([])
   const { pokemonId } = match.params
@@ -72,6 +74,18 @@ const PokemonDetail: React.FC<Props> = ({ match, getPokemonDetail, pokemon, clea
                 )
               })
             }
+              <div className="col mt-3" style={{paddingLeft: 0}}>
+                abilites:
+                {
+                  pokemonAbility.map((ability: any) =>{
+                    return(
+                      <div className="col">
+                        - {ability.ability.name}
+                      </div>
+                    )
+                  })
+                }
+              </div>
           </div>
         </div>
       </div>
