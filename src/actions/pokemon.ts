@@ -8,7 +8,7 @@ export const actionType = {
 }
 
 export const getPokemon = () => ({ dispatch, fetch }: Middleware)=> {
-  fetch('pokemon')
+  fetch('pokemon?limit=964')
   .then(res => {
     dispatch({
       type: actionType.GET_POKEMON,
