@@ -17,7 +17,7 @@ export const sortByNumber = (data: Array<any>, sortBy: string) => {
     let splittedA = a.url.split('/')
     let idB = Number(splittedB[splittedB.length-2])
     let idA = Number(splittedA[splittedA.length-2])
-    if(sortBy=='asc'){
+    if(sortBy === 'asc'){
       return idA-idB
     }else{
       return idB-idA

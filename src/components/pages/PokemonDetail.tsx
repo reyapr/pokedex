@@ -17,7 +17,6 @@ export interface Props extends RouteComponentProps<MatchParams>{
 } 
 
 const PokemonDetail: React.FC<Props> = ({ match, getPokemonDetail, pokemon, clearPokemonDetail }) => {
-  console.log(pokemon.abilities,`<========================= pokemon.abilities =======================`);
   const pokemonAbility = pokemon.abilities || []  
   const pokoemonDetail = pokemon.stats || []  
   const [ pokeStatus, setPokeStatus ] = useState([])
@@ -31,10 +30,10 @@ const PokemonDetail: React.FC<Props> = ({ match, getPokemonDetail, pokemon, clea
     return function cleanup(){
       clearPokemonDetail()
     }
-  },[getPokemonDetail])
+  },[getPokemonDetail, pokemonId, clearPokemonDetail])
 
   useEffect(() => {
-    let allStatus: any = pokemon.stats && pokemon.stats.map((status: any) => status.base_stat) || []
+    let allStatus: any = pokemon.stats.map((status: any) => status.base_stat) || []
     setTimeout(()=>{
       setPokeStatus(allStatus)
     },700)
@@ -44,7 +43,7 @@ const PokemonDetail: React.FC<Props> = ({ match, getPokemonDetail, pokemon, clea
     <div className="card mt-3 mx-auto" style={{ maxWidth: '1100px'}}>
       <div className="row no-gutters align-items-center">
         <div className="col-md-4">
-          <img src={imageUrl} className="card-img" alt="image"/>
+          <img src={imageUrl} className="card-img" alt="pokedex"/>
         </div>
         <div className="col-md-7 ml-1">
           <div className="card-body ">

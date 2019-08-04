@@ -84,7 +84,7 @@ const PokeCardList: React.FC<Props> = ({ pokemonList, getPokemon, filterPokemonL
         hasMore,
       })
     }
-  },[pokemonList, sort])
+  },[pokemonList, sort, state])
 
 
 
