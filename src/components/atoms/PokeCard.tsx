@@ -11,6 +11,7 @@ const PokeCard: React.FC<Props> = ({ name, pokemonDigitId }) => {
     <div className="col-md-3 card mx-0-auto " style={{margin: "40px", padding: '0px'}} >
       <img src={imageUrl} className="card-img-top bg-info" alt="pokemon"/>
       <div className="card-body">
+        <p className="card-text text-center">#{pokemonDigitId}</p>
         <p className="card-text text-center">{name}</p>
       </div>
     </div>
