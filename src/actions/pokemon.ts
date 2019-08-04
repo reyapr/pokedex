@@ -6,7 +6,9 @@ export const actionType = {
   GET_POKEMON_DETAIL: 'GET_POKEMON_DETAIL',
   CLEAR_POKEMON_DETAIL: 'CLEAR_POKEMON_DETAIL',
   FILTER_ASC: 'FILTER_ASC',
-  FILTER_DESC: 'FILTER_DESC'
+  FILTER_DESC: 'FILTER_DESC',
+  FILTER_DESC_ID: 'FILTER_DESC_ID',
+  FILTER_ASC_ID: 'FILTER_ASC_ID'
 }
 
 export const getPokemon = () => ({ dispatch, fetch }: Middleware)=> {
@@ -50,9 +52,13 @@ export const filterPokemonList = (filter: string) => ({ dispatch }: Middleware) 
         type: actionType.FILTER_DESC
       })
     case 'Highest Number':
-      break;
+      return dispatch({
+        type: actionType.FILTER_DESC_ID
+      })
     case 'Lowest Number':
-      break;
+      return dispatch({
+        type: actionType.FILTER_ASC_ID
+      })
     default:
       return ''
   }

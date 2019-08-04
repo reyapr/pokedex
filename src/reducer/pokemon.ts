@@ -1,6 +1,7 @@
 import { Reducer } from 'redux'
 import { actionType } from '../actions/pokemon'
-import { sortArr } from '../libs/sortHelper'
+import { sortArr, sortByNumber } from '../libs/sortHelper'
+
 export interface PokemonState {
   list: Array<any>
   detail: object
@@ -36,11 +37,23 @@ const pokemon: Reducer = (state: PokemonState = pokemonState, { type, payload })
         list: sortArr(state.list, 'asc'),
         sort: 'asc'
       }
+    case actionType.FILTER_ASC_ID:
+      return {
+        ...state,
+        list: sortByNumber(state.list, 'asc'),
+        sort: 'asc_num'
+      }
     case actionType.FILTER_DESC:
       return {
         ...state,
         list: sortArr(state.list, 'desc'),
         sort: 'desc'
+      }
+    case actionType.FILTER_DESC_ID:
+      return {
+        ...state,
+        list: sortByNumber(state.list, 'desc'),
+        sort: 'desc_num'
       }
     default:
       return state
