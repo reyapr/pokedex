@@ -1,17 +1,20 @@
 import React, { useEffect, useState } from 'react'
 import PokeCard from '../atoms/PokeCard'
 import { connect } from 'react-redux'
-import { getPokemon } from '../../actions/pokemon'
+import { getPokemon, filterPokemonList } from '../../actions/pokemon'
 import { ReduxState } from '../../reducer/configReducer'
 import InfiniteScroll from 'react-infinite-scroller'
 import { digitHelper } from '../../libs/digitHelper'
 import Loader from '../atoms/Loader'
+import FilterMenu from '../atoms/FilterMenu'
 export interface Props {
-  pokemonList: Array<any>,
+  pokemonList: Array<any>
   getPokemon: () => void
+  filterPokemonList: (filter: string) => void
+  sort: string
 } 
 
-const PokeCardList: React.FC<Props> = ({ pokemonList, getPokemon }) => {
+const PokeCardList: React.FC<Props> = ({ pokemonList, getPokemon, filterPokemonList, sort }) => {
 
   const [state, setState] = useState({
     itemsPage: 20,
@@ -19,6 +22,8 @@ const PokeCardList: React.FC<Props> = ({ pokemonList, getPokemon }) => {
     hasMore: false,
     showedItems: []
   })
+
+  const [ filter, setFilter ] = useState('')
 
   const newPokemonData = (data : any) =>{
     let copyData = [...data]
@@ -79,12 +84,16 @@ const PokeCardList: React.FC<Props> = ({ pokemonList, getPokemon }) => {
         hasMore,
       })
     }
-  },[pokemonList])
+  },[pokemonList, sort])
 
 
 
   return (
     <div className="container-fluid">
+      <FilterMenu
+        onChange={handleFilter}
+        value={filter}
+      />
       <InfiniteScroll
         pageStart={0}
         loadMore={loadMore}
@@ -111,8 +120,9 @@ const PokeCardList: React.FC<Props> = ({ pokemonList, getPokemon }) => {
 }
 
 const mapStateToProps = (state: ReduxState) => ({
-  pokemonList: state.pokemon.list
+  pokemonList: state.pokemon.list,
+  sort: state.pokemon.sort
 })
-const mapDispatchToProps = { getPokemon }
+const mapDispatchToProps = { getPokemon, filterPokemonList }
 
 export default connect(mapStateToProps, mapDispatchToProps)(PokeCardList)
