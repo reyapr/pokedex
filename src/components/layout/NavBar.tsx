@@ -1,9 +1,10 @@
-import React from "react"
+import React from 'react'
+import { Link } from 'react-router-dom'
 
 const layout: React.FC = () => {
   return (
     <nav className="navbar navbar-dark bg-dark sticky-top">
-      <a className="navbar-brand text-light">Pokedex</a>
+      <Link className="navbar-brand text-light" to="/">Pokedex</Link>
     </nav>
   )
 }
