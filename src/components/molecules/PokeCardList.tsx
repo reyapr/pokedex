@@ -49,10 +49,6 @@ const PokeCardList: React.FC<Props> = ({ pokemonList, getPokemon }) => {
     }
   }
 
-  const hasMore = () => {
-    console.log('hasMore')
-  }
-
   useEffect(()=>{
     getPokemon()
   },[getPokemon])
@@ -66,8 +62,8 @@ const PokeCardList: React.FC<Props> = ({ pokemonList, getPokemon }) => {
       startIndex: state.startIndex + 2,
       hasMore,
     })
-
   },[pokemonList])
+
   return (
     <div className="container-fluid">
       <InfiniteScroll
