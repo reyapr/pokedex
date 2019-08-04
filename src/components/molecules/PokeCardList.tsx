@@ -3,6 +3,8 @@ import PokeCard from '../atoms/PokeCard'
 import { connect } from 'react-redux'
 import { getPokemon } from '../../actions/pokemon'
 import { ReduxState } from '../../reducer/configReducer'
+import InfiniteScroll from 'react-infinite-scroller'
+import { digitHelper } from '../../libs/digitHelper'
 
 export interface Props {
   pokemonList: Array<any>,
@@ -20,10 +22,11 @@ const PokeCardList: React.FC<Props> = ({ pokemonList, getPokemon }) => {
       <div className="row p-1">
         {
             pokemonList.map(pokemon => {
+            let splittedUrl = pokemon.url.split('/')
             return(
               <PokeCard
                 name={pokemon.name}
-                pokemonId={Number(pokemon.url.substr(-2,1))}
+                pokemonDigitId={digitHelper(splittedUrl[splittedUrl.length-2])}
               />
             )
           })
