@@ -108,6 +108,7 @@ const PokeCardList: React.FC<Props> = ({ pokemonList, getPokemon, filterPokemonL
                 <PokeCard
                   name={pokemon.name}
                   pokemonDigitId={digitHelper(splittedUrl[splittedUrl.length-2])}
+                  pokemonId={splittedUrl[splittedUrl.length-2]}
                   key={index}
                 />
               )
