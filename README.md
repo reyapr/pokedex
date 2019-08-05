@@ -1,5 +1,5 @@
 ## Pokedex
-This Project using CRA with typescript as base react framework and https://pokeapi.co for source data
+This Project using CRA with typescript as react starter kits and https://pokeapi.co for source data
 
 ## How to run
 1. npm install
