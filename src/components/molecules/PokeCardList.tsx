@@ -40,6 +40,7 @@ const PokeCardList: React.FC<Props> = ({ pokemonList, getPokemon, filterPokemonL
   }
 
   const loadMore = () => {
+    console.log(`<========================= aneh =======================`);
     let { slicedPokemonData, hasMore } = newPokemonData(pokemonList)
     let showedItems: any = state.showedItems
     if(state.hasMore){
@@ -84,9 +85,9 @@ const PokeCardList: React.FC<Props> = ({ pokemonList, getPokemon, filterPokemonL
         hasMore,
       })
     }
-  },[pokemonList, sort, state])
+  },[pokemonList, sort])
 
-
+  console.log(state.showedItems,`<========================= state.showedItems =======================`);
 
   return (
     <div className="container-fluid">
